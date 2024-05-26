@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:track_cash/screens/home.dart';
+import 'package:track_cash/utilities/theme.dart';
 
 void main() {
   runApp(const CashTrackApp());
@@ -12,11 +13,9 @@ class CashTrackApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'TrackCash',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
+      theme: trackCashTheme(),
       home: const HomeScreen(),
     );
   }
 }
+
