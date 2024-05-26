@@ -14,11 +14,11 @@
       },
       "oauth_client": [
         {
-          "client_id": "24574227524-7cj44cedkd127qkfcss8agnrkcpb7jmj.apps.googleusercontent.com",
+          "client_id": "24574227524-5gfrmrl8e8a4fj271uobhn3n98g3r3ng.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.saakhani.track_cash",
-            "certificate_hash": "b4f4a2189e07cff81a0e42a181650dd514aff836"
+            "certificate_hash": "628ad8b2af1f7844cb1bab9d30223eb7ccb05c1b"
           }
         },
         {
