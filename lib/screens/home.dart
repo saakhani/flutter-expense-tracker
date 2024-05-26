@@ -15,7 +15,7 @@ class _HomeScreenState extends State<HomeScreen> {
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
       ),
-      body: Center(),
+      body: const Center(),
     );
   }
 }
