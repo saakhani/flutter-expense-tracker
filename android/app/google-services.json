@@ -12,7 +12,20 @@
           "package_name": "com.saakhani.track_cash"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "24574227524-7cj44cedkd127qkfcss8agnrkcpb7jmj.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.saakhani.track_cash",
+            "certificate_hash": "b4f4a2189e07cff81a0e42a181650dd514aff836"
+          }
+        },
+        {
+          "client_id": "24574227524-u6fdjs10ddatpm7i48ek6mmk7rv9l31a.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyDQ10rAWyblIUImBeSvsUNoUQLJpYNBPZ0"
@@ -20,7 +33,12 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "24574227524-u6fdjs10ddatpm7i48ek6mmk7rv9l31a.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }
