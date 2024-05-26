@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "24574227524",
+    "project_id": "track-c",
+    "storage_bucket": "track-c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:24574227524:android:471a68c321a6c280d97811",
+        "android_client_info": {
+          "package_name": "com.saakhani.track_cash"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDQ10rAWyblIUImBeSvsUNoUQLJpYNBPZ0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
