@@ -15,70 +15,87 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
+    TextTheme textThemeCurr = Theme.of(context).textTheme;
+    ColorScheme colorSchemeCurr = Theme.of(context).colorScheme;
+
     return SafeArea(
       child: Scaffold(
-        body: SingleChildScrollView(
-          child: Center(
-            child: Padding(
-              padding: const EdgeInsets.all(32),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  Text(
-                    "Welcome,",
-                    style: Theme.of(context).textTheme.headlineLarge,
+        body: Padding(
+          padding: const EdgeInsets.all(32),
+          child: SingleChildScrollView(
+            padding: EdgeInsets.only(top: 60),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                Text(
+                  "Welcome,",
+                  style: textThemeCurr.headlineLarge,
+                ),
+                SizedBox(
+                  height: 8,
+                ),
+                Text(
+                  "Sign in to continue!",
+                  style: textThemeCurr.headlineSmall,
+                ),
+                SizedBox(
+                  height: 32,
+                ),
+                TextField(
+                  controller: _usernameController,
+                  style: textThemeCurr.bodyMedium,
+                  decoration: textFieldTheme("Username", Icons.person, context),
+                ),
+                SizedBox(
+                  height: 16,
+                ),
+                TextField(
+                  controller: _passwordController,
+                  decoration: textFieldTheme("Password", Icons.lock, context),
+                  obscureText: true,
+                ),
+                SizedBox(
+                  height: 16,
+                ),
+                ElevatedButton(
+                  onPressed: () {},
+                  style: ButtonStyle(
+                      shape: WidgetStateProperty.all<RoundedRectangleBorder>(
+                          RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(16.0),
+                  ))),
+                  child: Text(
+                    "Login",
+                    style: textThemeCurr.bodyLarge
+                        ?.copyWith(color: colorSchemeCurr.onPrimary),
                   ),
-                  SizedBox(
-                    height: 8,
-                  ),
-                  Text(
-                    "Sign in to continue!",
-                    style: Theme.of(context).textTheme.headlineSmall,
-                  ),
-                  SizedBox(
-                    height: 32,
-                  ),
-                  TextField(
-                    controller: _usernameController,
-                    style: Theme.of(context).textTheme.bodyMedium,
-                    decoration: textFieldTheme("Username", Icons.person, context),
-                  ),
-                  SizedBox(
-                    height: 16,
-                  ),
-                  TextField(
-                    controller: _passwordController,
-                    decoration: textFieldTheme("Password", Icons.lock, context),
-                    obscureText: true,
-                  ),
-                  SizedBox(
-                    height: 16,
-                  ),
-                  ElevatedButton(
-                    onPressed: () {},
-                    child: Text(
-                      "Login",
-                      style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                          color: Theme.of(context).colorScheme.onPrimary),
+                ),
+                SizedBox(
+                  height: 8,
+                ),
+                GoogleSignInButton(),
+                SizedBox(
+                  height: 32,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      "Don't have an account? ",
+                      style: textThemeCurr.bodyMedium,
                     ),
-                  ),
-                                  SizedBox(
-                    height: 8,
-                  ),
-                  const GoogleSignInButton(),
-                  SizedBox(
-                    height: 32,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text("Don't have an account?"),
-                      TextButton(onPressed: () {}, child: Text("Sign up"))
-                    ],
-                  )
-                ],
-              ),
+                    TextButton(
+                        onPressed: () {},
+                        style: TextButton.styleFrom(padding: EdgeInsets.symmetric(horizontal: 0.0)),
+                        child: Text(
+                          "Sign up",
+                          style: textThemeCurr.bodyMedium
+                              ?.copyWith(color: colorSchemeCurr.primary),
+                        ))
+                  ],
+                )
+              ],
             ),
           ),
         ),

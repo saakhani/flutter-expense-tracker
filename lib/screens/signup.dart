@@ -9,21 +9,31 @@ class SignUpScreen extends StatefulWidget {
   State<SignUpScreen> createState() => _SignUpScreenState();
 }
 
-class _SignUpScreenState extends State<SignUpScreen>{
-  
+class _SignUpScreenState extends State<SignUpScreen> {
   @override
-  Widget build(BuildContext context){
+  Widget build(BuildContext context) {
+    TextTheme textThemeCurr = Theme.of(context).textTheme;
     return SafeArea(
       child: Scaffold(
-        body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const Text("Create Account,"),
-              const Text("Sign up to get started!"),
-              SignUpForm(),
-
-            ],
+        body: Padding(
+          padding: const EdgeInsets.all(32),
+          child: SingleChildScrollView(
+            padding: EdgeInsets.only(top: 80),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                Text(
+                  "Create Account,",
+                  style: textThemeCurr.headlineLarge,
+                ),
+                SizedBox(height: 8,),
+                Text("Sign up to get started!",
+                    style: textThemeCurr.headlineSmall),
+               SizedBox(height: 32,),
+                SignUpForm(),
+              ],
+            ),
           ),
         ),
       ),

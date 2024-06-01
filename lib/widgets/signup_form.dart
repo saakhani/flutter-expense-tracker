@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:track_cash/utilities/theme.dart';
 
 class SignUpForm extends StatefulWidget {
   const SignUpForm({super.key});
@@ -34,9 +35,10 @@ class SignUpFormState extends State<SignUpForm> {
     return Form(
       key: _formKey,
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
           TextFormField(
-            decoration: InputDecoration(label: Text("Full Name")),
+            decoration: textFieldTheme("Full Name", Icons.person, context),
             controller: _fullNameController,
             validator: (value) {
               if (value == null || value.isEmpty) {
@@ -45,8 +47,9 @@ class SignUpFormState extends State<SignUpForm> {
               return null;
             },
           ),
+          SizedBox(height: 16,),
           TextFormField(
-            decoration: InputDecoration(label: Text("Email ID")),
+            decoration: textFieldTheme("Email Id", Icons.email, context),
             controller: _emailController,
             validator: (value) {
               if (value == null || value.isEmpty) {
@@ -55,8 +58,9 @@ class SignUpFormState extends State<SignUpForm> {
               return null;
             },
           ),
+                    SizedBox(height: 16,),
           TextFormField(
-            decoration: InputDecoration(label: Text("Password")),
+            decoration: textFieldTheme("Password", Icons.lock, context),
             controller: _passwordController,
             validator: (value) {
               if (value == null || value.isEmpty) {
@@ -64,9 +68,9 @@ class SignUpFormState extends State<SignUpForm> {
               }
               return null;
             },
-          ),
+          ),          SizedBox(height: 16,),
           TextFormField(
-            decoration: InputDecoration(label: Text("Confirm Password")),
+            decoration: textFieldTheme("Confirm Password", Icons.lock, context),
             controller: _confirmPasswordController,
             validator: (value) {
               if (value == null || value.isEmpty) {
@@ -74,8 +78,12 @@ class SignUpFormState extends State<SignUpForm> {
               }
               return null;
             },
-          ),
+          ),          SizedBox(height: 32,),
           ElevatedButton(
+            style: ButtonStyle(
+                      shape: WidgetStateProperty.all<RoundedRectangleBorder>(
+                          RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(16.0),))),
             onPressed: () {
               // Validate returns true if the form is valid, or false otherwise.
               if (_formKey.currentState!.validate()) {
@@ -91,7 +99,11 @@ class SignUpFormState extends State<SignUpForm> {
                 _confirmPasswordController.clear();
               }
             },
-            child: const Text('Submit'),
+           child: Text(
+                    "Sign Up",
+                    style: Theme.of(context).textTheme.bodyLarge
+                        ?.copyWith(color: Theme.of(context).colorScheme.onPrimary),
+                  ),
           ),
         ],
       ),
