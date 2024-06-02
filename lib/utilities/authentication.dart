@@ -16,7 +16,7 @@ class Authentication {
   if (user != null) {
     Navigator.of(context).pushReplacement(
       MaterialPageRoute(
-        builder: (context) => const HomeScreen(),
+        builder: (context) => HomeScreen(),
       ),
     );
   }

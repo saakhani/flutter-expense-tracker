@@ -9,23 +9,29 @@ ThemeData trackCashTheme() {
         headlineLarge: TextStyle(
           color: colorSchemeTemp.onSurface,
           fontSize: 30,
-          fontFamily: GoogleFonts.roboto().fontFamily,
+          fontFamily: GoogleFonts.lato().fontFamily,
+          fontWeight: FontWeight.w600,
+        ),
+        headlineMedium: TextStyle(
+          color: colorSchemeTemp.onSurface,
+          fontSize: 24,
+          fontFamily: GoogleFonts.lato().fontFamily,
           fontWeight: FontWeight.w600,
         ),
         headlineSmall: TextStyle(
           color: colorSchemeTemp.onSurface,
           fontSize: 18,
-          fontFamily: GoogleFonts.roboto().fontFamily,
+          fontFamily: GoogleFonts.lato().fontFamily,
           fontWeight: FontWeight.w500,
         ),
         bodyMedium: TextStyle(
           fontSize: 18,
-          fontFamily: GoogleFonts.roboto().fontFamily,
+          fontFamily: GoogleFonts.lato().fontFamily,
           fontWeight: FontWeight.w400,
         ),
         bodyLarge: TextStyle(
           fontSize: 20,
-          fontFamily: GoogleFonts.roboto().fontFamily,
+          fontFamily: GoogleFonts.lato().fontFamily,
           fontWeight: FontWeight.w600,
         )),
     elevatedButtonTheme: ElevatedButtonThemeData(
