@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:track_cash/screens/home.dart';
 import 'package:track_cash/screens/login.dart';
+import 'package:track_cash/screens/new_account.dart';
+import 'package:track_cash/screens/new_transaction.dart';
 import 'package:track_cash/screens/signup.dart';
 import 'package:track_cash/utilities/theme.dart';
 
@@ -20,7 +22,7 @@ class CashTrackApp extends StatelessWidget {
     return MaterialApp(
       title: 'TrackCash',
       theme: trackCashTheme(),
-      home: HomeScreen(),
+      home: AddTransaction(),
     );
   }
 }

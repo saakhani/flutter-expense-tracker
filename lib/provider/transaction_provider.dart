@@ -8,3 +8,4 @@ part 'transaction_provider.g.dart';
 Future<List<TransactionModel>> getAllTransactions(GetAllTransactionsRef ref) {
   return TransactionService().getAllTransactions();
 }
+

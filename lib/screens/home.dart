@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:track_cash/models/transaction_model.dart';
 import 'package:track_cash/provider/transaction_provider.dart';
+import 'package:track_cash/screens/new_transaction.dart';
 import 'package:track_cash/widgets/nav_bar.dart';
 
 class HomeScreen extends ConsumerWidget {
@@ -204,7 +205,12 @@ class HomeScreen extends ConsumerWidget {
       ),
       floatingActionButton: FloatingActionButton(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-        onPressed: () {},
+        onPressed: () {
+          Navigator.pushAndRemoveUntil(context,
+              MaterialPageRoute(builder: (context) {
+            return AddTransaction();
+          }), (route) => false);
+        },
         child: Icon(
           Icons.add_rounded,
           size: 35,
