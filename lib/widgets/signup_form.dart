@@ -37,7 +37,7 @@ class SignUpFormState extends State<SignUpForm> {
       );
 
       // Update the user's display name
-      await userCredential.user.updateDisplayName(_fullNameController.text);
+      await userCredential.user?.updateDisplayName(_fullNameController.text);
       await userCredential.user?.reload();
       User? updatedUser = auth.currentUser;
 
