@@ -8,7 +8,9 @@ import 'package:track_cash/services/total_services.dart';
 import 'package:track_cash/services/transaction_service.dart';
 
 class TransactionForm extends StatefulWidget {
-  const TransactionForm({super.key});
+  const TransactionForm({super.key, required this.user});
+
+  final User user;
 
   @override
   State<TransactionForm> createState() => TransactionFormState();
@@ -218,19 +220,19 @@ class TransactionFormState extends State<TransactionForm> {
                   ScaffoldMessenger.of(context).showSnackBar(
                       const SnackBar(content: Text('Processing Data: ')));
                   String success = await TransactionService().AddTransaction(
-                        _nameController.text,
-                        num.tryParse(_amountController.text) ?? 0,
-                        _selectedCategory,
-                        _selectedDate,
-                        _isIncome,
-                        ""
-                      ) ??
+                          _nameController.text,
+                          num.tryParse(_amountController.text) ?? 0,
+                          _selectedCategory,
+                          _selectedDate,
+                          _isIncome,
+                          "") ??
                       "";
 
                   if (success.isNotEmpty) {
+                    
                     Navigator.pushAndRemoveUntil(context,
                         MaterialPageRoute(builder: (context) {
-                      return HomeScreen();
+                      return HomeScreen(user: widget.user,);
                     }), (route) => false);
                   } else {
                     ScaffoldMessenger.of(context).showSnackBar(const SnackBar(

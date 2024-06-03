@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:track_cash/screens/login.dart';
+import 'package:track_cash/widgets/nav_bar.dart';
 
 class ProfilePage extends StatelessWidget {
   final User user;
@@ -48,6 +49,7 @@ class ProfilePage extends StatelessWidget {
           ],
         ),
       ),
+      bottomNavigationBar: NavBar(index: 2, user: user),
     );
   }
 }

@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -8,7 +9,8 @@ import 'package:track_cash/screens/new_transaction.dart';
 import 'package:track_cash/widgets/nav_bar.dart';
 
 class DetailsScreen extends ConsumerWidget {
-  DetailsScreen({super.key});
+  final User user;
+  DetailsScreen({super.key, required this.user });
 
 
 
@@ -124,7 +126,7 @@ class DetailsScreen extends ConsumerWidget {
           ],
         ),
       ),
-      bottomNavigationBar: NavBar(index: 1,),
+      bottomNavigationBar: NavBar(index: 1, user: user,),
     );
   }
 }

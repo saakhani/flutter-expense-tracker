@@ -1,10 +1,13 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:track_cash/screens/home.dart';
 import 'package:track_cash/services/account_services.dart';
 import 'package:track_cash/utilities/theme.dart';
 
 class AccountForm extends StatefulWidget {
-  const AccountForm({super.key});
+  const AccountForm({super.key, required this.user});
+
+  final User user;
 
   @override
   State<AccountForm> createState() => AccountFormState();
@@ -90,7 +93,7 @@ class AccountFormState extends State<AccountForm> {
                   if (success.isNotEmpty) {
                     Navigator.pushAndRemoveUntil(context,
                         MaterialPageRoute(builder: (context) {
-                      return HomeScreen();
+                      return HomeScreen(user: widget.user,);
                     }), (route) => false);
                   } else {
                     ScaffoldMessenger.of(context).showSnackBar(const SnackBar(

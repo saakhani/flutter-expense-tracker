@@ -5,17 +5,15 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:track_cash/models/transaction_model.dart';
 import 'package:track_cash/provider/total_provider.dart';
 import 'package:track_cash/provider/transaction_provider.dart';
+import 'package:track_cash/screens/details.dart';
 import 'package:track_cash/screens/new_transaction.dart';
 import 'package:track_cash/widgets/nav_bar.dart';
 
 final isExpandedProvider = StateProvider<bool>((ref) => false);
 
 class HomeScreen extends ConsumerWidget {
-  HomeScreen({super.key, 
-  // required this.user
-  });
-  // final User user;
-  
+  HomeScreen({super.key, required this.user});
+  final User user;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -94,7 +92,7 @@ class HomeScreen extends ConsumerWidget {
                             children: [
                               SizedBox(height: 8),
                               Text(
-                                "Hello",
+                                "Accounts",
                                 style: Theme.of(context)
                                     .textTheme
                                     .bodyLarge
@@ -140,7 +138,14 @@ class HomeScreen extends ConsumerWidget {
                       color: colorSchemeCurr.onSurfaceVariant, fontSize: 22),
                 ),
                 IconButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pushAndRemoveUntil(context,
+          MaterialPageRoute(builder: (context) {
+        return DetailsScreen(
+         user: user,
+        );
+      }), (route) => false);
+                    },
                     icon: Icon(
                       Icons.double_arrow_rounded,
                       color: colorSchemeCurr.secondary,
@@ -245,7 +250,9 @@ class HomeScreen extends ConsumerWidget {
           Navigator.push(
             context,
             MaterialPageRoute(builder: (context) {
-              return AddTransaction();
+              return AddTransaction(
+                user: user,
+              );
             }),
           );
         },
@@ -256,6 +263,7 @@ class HomeScreen extends ConsumerWidget {
         foregroundColor: colorSchemeCurr.onSecondaryFixedVariant,
       ),
       bottomNavigationBar: NavBar(
+        user: user,
         index: 0,
       ),
     );

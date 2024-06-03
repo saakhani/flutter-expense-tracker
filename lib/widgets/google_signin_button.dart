@@ -52,7 +52,7 @@ class GoogleSignInButtonState extends State<GoogleSignInButton> {
                     context,
                     MaterialPageRoute(
                     //(builder: (context) => HomeScreen()),
-                    builder: (context) => ProfilePage(user: user)),
+                    builder: (context) => HomeScreen(user: user)),
                     (route) => false,
                   );
                 }
