@@ -7,19 +7,15 @@ import 'package:track_cash/provider/transaction_provider.dart';
 import 'package:track_cash/screens/new_transaction.dart';
 import 'package:track_cash/widgets/nav_bar.dart';
 
-final isExpandedProvider = StateProvider<bool>((ref) => false);
-
-class HomeScreen extends ConsumerWidget {
-  HomeScreen({super.key});
+class DetailsScreen extends ConsumerWidget {
+  DetailsScreen({super.key});
 
 
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final AsyncValue<List<TransactionModel>> temp =
-        ref.watch(getTenTransactionsProvider);
-    final AsyncValue<double> total = ref.watch(getTotalProvider);
-    final isExpanded = ref.watch(isExpandedProvider);
+        ref.watch(getAllTransactionsProvider);
     TextTheme textThemeCurr = Theme.of(context).textTheme;
     ColorScheme colorSchemeCurr = Theme.of(context).colorScheme;
 
@@ -27,7 +23,7 @@ class HomeScreen extends ConsumerWidget {
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.secondaryFixed,
         title: Text(
-          "Dashboard",
+          "Details",
           style: textThemeCurr.headlineMedium?.copyWith(
               color: colorSchemeCurr.onSecondaryFixedVariant, fontSize: 24),
         ),
@@ -40,110 +36,12 @@ class HomeScreen extends ConsumerWidget {
             SizedBox(
               height: 16,
             ),
-            AnimatedContainer(
-              duration: Duration(milliseconds: 300),
-              curve: Curves.easeInOut,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(16),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.grey.withOpacity(0.1),
-                    spreadRadius: 3,
-                    blurRadius: 4,
-                    offset: Offset(2, 3), // changes position of shadow
-                  ),
-                ],
-                color: Theme.of(context).colorScheme.secondaryContainer,
-              ),
-              padding: EdgeInsets.symmetric(horizontal: 16),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  SizedBox(
-                    height: 16,
-                  ),
-                  Text(
-                    "Available Balance",
-                    style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                          color:
-                              Theme.of(context).colorScheme.onPrimaryContainer,
-                        ),
-                  ),
-                  SizedBox(height: 8),
-                  Text(
-                    total.when(
-                      data: (value) => "PKR " + value.toString(),
-                      error: (error, stackTrace) => error.toString(),
-                      loading: () => "Loading",
-                    ),
-                    textAlign: TextAlign.center,
-                    style: Theme.of(context).textTheme.headlineLarge?.copyWith(
-                          color: Theme.of(context)
-                              .colorScheme
-                              .onPrimaryFixedVariant,
-                        ),
-                  ),
-                  AnimatedSwitcher(
-                    duration: Duration(milliseconds: 0),
-                    child: isExpanded
-                        ? Column(
-                            key: ValueKey('expanded'),
-                            children: [
-                              SizedBox(height: 8),
-                              Text(
-                                "Hello",
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .bodyLarge
-                                    ?.copyWith(
-                                      color: Theme.of(context)
-                                          .colorScheme
-                                          .onPrimaryContainer,
-                                    ),
-                              ),
-                            ],
-                          )
-                        : SizedBox.shrink(key: ValueKey('collapsed')),
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      IconButton(
-                        style: ButtonStyle(
-                            padding: WidgetStateProperty.all(EdgeInsets.zero)),
-                        icon: Icon(
-                            color: colorSchemeCurr.onPrimaryFixed,
-                            size: 40,
-                            isExpanded ? Icons.expand_less : Icons.expand_more),
-                        onPressed: () {
-                          ref.read(isExpandedProvider.notifier).state = !isExpanded;
-                        },
-                      ),
-                    ],
-                  ),
-                ],
-              ),
+            Text(
+              "All Transactions",
+              style: textThemeCurr.headlineMedium?.copyWith(
+                  color: colorSchemeCurr.onSurfaceVariant, fontSize: 22),
             ),
-            SizedBox(
-              height: 16,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  "Recent Transactions",
-                  style: textThemeCurr.headlineMedium?.copyWith(
-                      color: colorSchemeCurr.onSurfaceVariant, fontSize: 22),
-                ),
-                IconButton(
-                    onPressed: () {},
-                    icon: Icon(
-                      Icons.double_arrow_rounded,
-                      color: colorSchemeCurr.secondary,
-                      size: 35,
-                    ))
-              ],
-            ),
+            SizedBox(height: 8,),
             switch (temp) {
               AsyncData(:final value) => Expanded(
                   child: ListView.separated(
@@ -226,21 +124,7 @@ class HomeScreen extends ConsumerWidget {
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-        onPressed: () {
-          Navigator.push(context,
-              MaterialPageRoute(builder: (context) {
-            return AddTransaction();
-          }),);
-        },
-        child: Icon(
-          Icons.add_rounded,
-          size: 35,
-        ),
-        foregroundColor: colorSchemeCurr.onSecondaryFixedVariant,
-      ),
-      bottomNavigationBar: NavBar(index: 0,),
+      bottomNavigationBar: NavBar(index: 1,),
     );
   }
 }

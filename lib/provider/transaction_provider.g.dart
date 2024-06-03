@@ -24,5 +24,23 @@ final getAllTransactionsProvider =
 
 typedef GetAllTransactionsRef
     = AutoDisposeFutureProviderRef<List<TransactionModel>>;
+String _$getTenTransactionsHash() =>
+    r'f451d659e67cd3e2c0ce59180a12a9410cb90c22';
+
+/// See also [getTenTransactions].
+@ProviderFor(getTenTransactions)
+final getTenTransactionsProvider =
+    AutoDisposeFutureProvider<List<TransactionModel>>.internal(
+  getTenTransactions,
+  name: r'getTenTransactionsProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$getTenTransactionsHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef GetTenTransactionsRef
+    = AutoDisposeFutureProviderRef<List<TransactionModel>>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

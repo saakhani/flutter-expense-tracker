@@ -9,3 +9,7 @@ Future<List<TransactionModel>> getAllTransactions(GetAllTransactionsRef ref) {
   return TransactionService().getAllTransactions();
 }
 
+@riverpod
+Future<List<TransactionModel>> getTenTransactions(GetTenTransactionsRef ref) {
+  return TransactionService().getTenTransactions();
+}
