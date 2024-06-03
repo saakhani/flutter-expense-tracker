@@ -29,6 +29,24 @@ class SignUpFormState extends State<SignUpForm> {
     super.dispose();
   }
 
+  void _signUp() async {
+    try {
+      UserCredential userCredential = await auth.createUserWithEmailAndPassword(
+        email: _emailController.text,
+        password: _passwordController.text,
+      );
+
+      // Update the user's display name
+      await userCredential.user.updateDisplayName(_fullNameController.text);
+      await userCredential.user?.reload();
+      User? updatedUser = auth.currentUser;
+
+      print("User signed up with display name: ${updatedUser?.displayName}");
+    } catch (e) {
+      print("Error: $e");
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     // Build a Form widget using the _formKey created above.
@@ -47,7 +65,9 @@ class SignUpFormState extends State<SignUpForm> {
               return null;
             },
           ),
-          SizedBox(height: 16,),
+          SizedBox(
+            height: 16,
+          ),
           TextFormField(
             decoration: textFieldTheme("Email Id", Icons.email, context),
             controller: _emailController,
@@ -58,9 +78,12 @@ class SignUpFormState extends State<SignUpForm> {
               return null;
             },
           ),
-                    SizedBox(height: 16,),
+          SizedBox(
+            height: 16,
+          ),
           TextFormField(
             decoration: textFieldTheme("Password", Icons.lock, context),
+            obscureText: true,
             controller: _passwordController,
             validator: (value) {
               if (value == null || value.isEmpty) {
@@ -68,9 +91,13 @@ class SignUpFormState extends State<SignUpForm> {
               }
               return null;
             },
-          ),          SizedBox(height: 16,),
+          ),
+          SizedBox(
+            height: 16,
+          ),
           TextFormField(
             decoration: textFieldTheme("Confirm Password", Icons.lock, context),
+            obscureText: true,
             controller: _confirmPasswordController,
             validator: (value) {
               if (value == null || value.isEmpty) {
@@ -78,32 +105,35 @@ class SignUpFormState extends State<SignUpForm> {
               }
               return null;
             },
-          ),          SizedBox(height: 32,),
+          ),
+          SizedBox(
+            height: 32,
+          ),
           ElevatedButton(
             style: ButtonStyle(
-                      shape: WidgetStateProperty.all<RoundedRectangleBorder>(
-                          RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(16.0),))),
+                shape: WidgetStateProperty.all<RoundedRectangleBorder>(
+                    RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(16.0),
+            ))),
             onPressed: () {
               // Validate returns true if the form is valid, or false otherwise.
               if (_formKey.currentState!.validate()) {
                 print(_emailController.text);
-                auth.createUserWithEmailAndPassword(
-                  email: _emailController.text,
-                  password: _passwordController.text
-                );
-                
+                _signUp();
+
                 _fullNameController.clear();
                 _emailController.clear();
                 _passwordController.clear();
                 _confirmPasswordController.clear();
               }
             },
-           child: Text(
-                    "Sign Up",
-                    style: Theme.of(context).textTheme.bodyLarge
-                        ?.copyWith(color: Theme.of(context).colorScheme.onPrimary),
-                  ),
+            child: Text(
+              "Sign Up",
+              style: Theme.of(context)
+                  .textTheme
+                  .bodyLarge
+                  ?.copyWith(color: Theme.of(context).colorScheme.onPrimary),
+            ),
           ),
         ],
       ),

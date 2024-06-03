@@ -1,4 +1,7 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:track_cash/screens/profile.dart';
+import 'package:track_cash/screens/signup.dart';
 import 'package:track_cash/utilities/theme.dart';
 import 'package:track_cash/widgets/google_signin_button.dart';
 
@@ -12,6 +15,40 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   final _usernameController = TextEditingController();
   final _passwordController = TextEditingController();
+  final auth = FirebaseAuth.instance;
+
+  Future<User?> loginWithEmail(email, password) async {
+    try {
+      final UserCredential userCredential =
+          await auth.signInWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+      return userCredential.user;
+    } catch (e) {
+      print(e);
+      return null;
+    }
+  }
+
+  void loginEmail(email, password) async {
+    print("Attempting login");
+    //login with google
+    User? user = await loginWithEmail(email, password);
+    if (user != null) {
+      //to make sure that the widget is mounted when we switch contexts
+      if (!mounted) return;
+      Navigator.pushAndRemoveUntil(context,
+          MaterialPageRoute(builder: (context) {
+        return ProfilePage(user: user);
+      }), (route) => false);
+    } else {
+      if (!mounted) return;
+      ScaffoldMessenger.of(context)
+          .showSnackBar(const SnackBar(content: Text('Failed to login')));
+      print("There was an error");
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +82,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 TextField(
                   controller: _usernameController,
                   style: textThemeCurr.bodyMedium,
-                  decoration: textFieldTheme("Username", Icons.person, context),
+                  decoration: textFieldTheme("Email", Icons.person, context),
                 ),
                 SizedBox(
                   height: 16,
@@ -59,7 +96,10 @@ class _LoginScreenState extends State<LoginScreen> {
                   height: 16,
                 ),
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    loginEmail(
+                        _usernameController.text, _passwordController.text);
+                  },
                   style: ButtonStyle(
                       shape: WidgetStateProperty.all<RoundedRectangleBorder>(
                           RoundedRectangleBorder(
@@ -86,8 +126,14 @@ class _LoginScreenState extends State<LoginScreen> {
                       style: textThemeCurr.bodyMedium,
                     ),
                     TextButton(
-                        onPressed: () {},
-                        style: TextButton.styleFrom(padding: EdgeInsets.symmetric(horizontal: 0.0)),
+                        onPressed: () {
+                          Navigator.pushAndRemoveUntil(context,
+                              MaterialPageRoute(builder: (context) {
+                            return SignUpScreen();
+                          }), (route) => false);
+                        },
+                        style: TextButton.styleFrom(
+                            padding: EdgeInsets.symmetric(horizontal: 0.0)),
                         child: Text(
                           "Sign up",
                           style: textThemeCurr.bodyMedium

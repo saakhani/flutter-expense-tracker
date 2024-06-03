@@ -4,6 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:track_cash/screens/home.dart';
+import 'package:track_cash/screens/profile.dart';
 
 class Authentication {
   static Future<FirebaseApp> initializeFirebase({
@@ -16,7 +17,8 @@ class Authentication {
   if (user != null) {
     Navigator.of(context).pushReplacement(
       MaterialPageRoute(
-        builder: (context) => HomeScreen(),
+        // builder: (context) => HomeScreen(user: user,),
+        builder: (context) => ProfilePage(user: user),
       ),
     );
   }

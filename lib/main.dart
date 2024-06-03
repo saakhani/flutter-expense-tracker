@@ -23,7 +23,7 @@ class CashTrackApp extends StatelessWidget {
     return MaterialApp(
       title: 'TrackCash',
       theme: trackCashTheme(),
-      home: HomeScreen(),
+      home: LoginScreen(),
     );
   }
 }

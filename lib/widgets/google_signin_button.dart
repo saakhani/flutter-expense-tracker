@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:track_cash/screens/home.dart';
+import 'package:track_cash/screens/profile.dart';
 import 'package:track_cash/utilities/authentication.dart';
 
 class GoogleSignInButton extends StatefulWidget {
@@ -49,7 +50,9 @@ class GoogleSignInButtonState extends State<GoogleSignInButton> {
                 if (user != null) {
                   Navigator.pushAndRemoveUntil(
                     context,
-                    MaterialPageRoute(builder: (context) => HomeScreen()),
+                    MaterialPageRoute(
+                    //(builder: (context) => HomeScreen()),
+                    builder: (context) => ProfilePage(user: user)),
                     (route) => false,
                   );
                 }

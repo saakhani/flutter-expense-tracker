@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -10,9 +11,11 @@ import 'package:track_cash/widgets/nav_bar.dart';
 final isExpandedProvider = StateProvider<bool>((ref) => false);
 
 class HomeScreen extends ConsumerWidget {
-  HomeScreen({super.key});
-
-
+  HomeScreen({super.key, 
+  // required this.user
+  });
+  // final User user;
+  
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -116,7 +119,8 @@ class HomeScreen extends ConsumerWidget {
                             size: 40,
                             isExpanded ? Icons.expand_less : Icons.expand_more),
                         onPressed: () {
-                          ref.read(isExpandedProvider.notifier).state = !isExpanded;
+                          ref.read(isExpandedProvider.notifier).state =
+                              !isExpanded;
                         },
                       ),
                     ],
@@ -159,7 +163,8 @@ class HomeScreen extends ConsumerWidget {
                           collapsedTextColor: colorSchemeCurr.onSurfaceVariant,
                           backgroundColor: colorSchemeCurr.surfaceContainer,
                           textColor: colorSchemeCurr.onSurface,
-                          expandedCrossAxisAlignment: CrossAxisAlignment.stretch,
+                          expandedCrossAxisAlignment:
+                              CrossAxisAlignment.stretch,
                           childrenPadding: EdgeInsets.all(8),
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.all(Radius.circular(16)),
@@ -181,16 +186,24 @@ class HomeScreen extends ConsumerWidget {
                                 ),
                               ),
                               Text(
-                                value[index].income ? "+ PKR " + value[index].amount.toString() : "- PKR " + value[index].amount.toString(),
+                                value[index].income
+                                    ? "+ PKR " + value[index].amount.toString()
+                                    : "- PKR " + value[index].amount.toString(),
                                 style: TextStyle(
                                   fontSize: 18,
                                   fontFamily: GoogleFonts.lato().fontFamily,
-                                  color: value[index].income ? Colors.green : Colors.red,
+                                  color: value[index].income
+                                      ? Colors.green
+                                      : Colors.red,
                                 ),
                               ),
                             ],
                           ),
-                          subtitle: Text(value[index].date.day.toString() + "/" + value[index].date.month.toString() + "/" + value[index].date.year.toString()),
+                          subtitle: Text(value[index].date.day.toString() +
+                              "/" +
+                              value[index].date.month.toString() +
+                              "/" +
+                              value[index].date.year.toString()),
                           children: [
                             Text("Account: " + value[index].account),
                             Text("Category: " + value[index].category),
@@ -229,10 +242,12 @@ class HomeScreen extends ConsumerWidget {
       floatingActionButton: FloatingActionButton(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
         onPressed: () {
-          Navigator.push(context,
-              MaterialPageRoute(builder: (context) {
-            return AddTransaction();
-          }),);
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) {
+              return AddTransaction();
+            }),
+          );
         },
         child: Icon(
           Icons.add_rounded,
@@ -240,7 +255,9 @@ class HomeScreen extends ConsumerWidget {
         ),
         foregroundColor: colorSchemeCurr.onSecondaryFixedVariant,
       ),
-      bottomNavigationBar: NavBar(index: 0,),
+      bottomNavigationBar: NavBar(
+        index: 0,
+      ),
     );
   }
 }
