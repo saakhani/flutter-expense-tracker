@@ -66,7 +66,7 @@ class _LoginScreenState extends State<LoginScreen> {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 Text(
-                  "Welcome,",
+                  "Welcome to TrackCash,",
                   style: textThemeCurr.headlineLarge,
                 ),
                 SizedBox(

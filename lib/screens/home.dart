@@ -28,7 +28,7 @@ class HomeScreen extends ConsumerWidget {
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.secondaryFixed,
         title: Text(
-          "Dashboard",
+          "TrackCash",
           style: textThemeCurr.headlineMedium?.copyWith(
               color: colorSchemeCurr.onSecondaryFixedVariant, fontSize: 24),
         ),
